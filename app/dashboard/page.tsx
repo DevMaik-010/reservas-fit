@@ -80,7 +80,7 @@ export default function DashboardPage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <header className="bg-gradient-to-r from-red-500 to-orange-500 text-white p-4 shadow-lg sticky top-0 z-40">
+      <header className="bg-linear-to-r from-red-500 to-orange-500 text-white p-4 shadow-lg sticky top-0 z-40">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold">Dashboard Operador</h1>
@@ -131,7 +131,7 @@ export default function DashboardPage() {
             </div>
           ) : pedidosFiltrados.length === 0 ? (
             <div className="bg-white rounded-lg shadow p-8 text-center">
-              <p className="text-gray-500 text-lg">No hay pedidos con estado "{filtro}"</p>
+              <p className="text-gray-500 text-lg">No hay pedidos con estado {filtro}</p>
             </div>
           ) : (
             <div className="grid gap-4">

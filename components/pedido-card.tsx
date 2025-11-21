@@ -48,7 +48,7 @@ export function PedidoCard({ pedido, onActualizarEstado, onEliminar }: Props) {
             <div key={idx} className="text-sm border-l-2 border-gray-300 pl-2">
               <p className="font-medium">{item.hamburguesa.nombre}</p>
               <p className="text-xs text-gray-600">
-                Cantidad: {item.cantidad} x ${item.hamburguesa.precio || 0}
+                Cantidad: {item.cantidad} x Bs{item.hamburguesa.precio}
               </p>
               <p className="text-xs text-gray-500">
                 Ingredientes: {item.ingredientesSeleccionados.map((i) => i.nombre).join(", ")}
@@ -60,7 +60,7 @@ export function PedidoCard({ pedido, onActualizarEstado, onEliminar }: Props) {
             <div key={idx} className="text-sm border-l-2 border-gray-300 pl-2">
               <p className="font-medium">{bebida.bebida.nombre}</p>
               <p className="text-xs text-gray-600">
-                {bebida.cantidad} - Bs{bebida.precio.toFixed(2)}
+                {bebida.cantidad} - Bs {bebida.precio.toFixed(2)}
               </p>
             </div>
           ))}
@@ -76,7 +76,7 @@ export function PedidoCard({ pedido, onActualizarEstado, onEliminar }: Props) {
         <div className="flex items-center justify-between pt-3 border-t">
           <div>
             <p className="text-xs text-gray-600">Total</p>
-            <p className="text-xl font-bold text-red-500">${pedido.total.toFixed(2)}</p>
+            <p className="text-xl font-bold text-red-500">Bs {pedido.total.toFixed(2)}</p>
           </div>
 
           <div className="flex gap-2">

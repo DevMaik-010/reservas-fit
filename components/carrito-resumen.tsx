@@ -56,7 +56,7 @@ export function CarritoResumen({ items, bebidas, total, onRemoveItem, onRemoveBe
                   <p className="text-xs text-gray-600">
                     ccc{bebida.cantidad}
                   </p>
-                  <p className="font-bold text-orange-500 text-sm">${bebida.precio.toFixed(2)}</p>
+                  <p className="font-bold text-orange-500 text-sm">Bs {bebida.precio.toFixed(2)}</p>
                 </div>
               ))}
             </div>
@@ -64,7 +64,7 @@ export function CarritoResumen({ items, bebidas, total, onRemoveItem, onRemoveBe
             <div className="border-t pt-3 space-y-2">
               <div className="flex justify-between font-bold text-lg">
                 <span>Total:</span>
-                <span className="text-red-500">${total.toFixed(2)}</span>
+                <span className="text-red-500">Bs {total.toFixed(2)}</span>
               </div>
 
               <Button onClick={onConfirm} className="w-full bg-red-500 hover:bg-red-600 text-white">

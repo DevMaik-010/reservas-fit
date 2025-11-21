@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import {toast} from "react-hot-toast"
 import type { ItemPedido, DetalleBebida } from "@/types"
 
 interface Props {
@@ -40,7 +41,7 @@ export function ModalPedido({ items, bebidas, total, onClose, onConfirm }: Props
       })
 
       if (response.ok) {
-        alert("Pedido confirmado")
+        toast.success("Pedido confirmado")
         onConfirm()
       }
     } catch (error) {
@@ -66,7 +67,7 @@ export function ModalPedido({ items, bebidas, total, onClose, onConfirm }: Props
               <div key={item.id} className="text-sm">
                 <p className="font-semibold">{item.hamburguesa.nombre}</p>
                 <p className="text-gray-600 text-xs">x{item.cantidad}</p>
-                <p className="font-bold text-red-500">${item.precio.toFixed(2)}</p>
+                <p className="font-bold text-red-500">Bs {item.precio.toFixed(2)}</p>
               </div>
             ))}
 
@@ -76,14 +77,14 @@ export function ModalPedido({ items, bebidas, total, onClose, onConfirm }: Props
                 <p className="text-gray-600 text-xs">
                   {bebida.cantidad}
                 </p>
-                <p className="font-bold text-orange-500">${bebida.precio.toFixed(2)}</p>
+                <p className="font-bold text-orange-500">Bs {bebida.precio.toFixed(2)}</p>
               </div>
             ))}
           </div>
 
           <div className="text-xl font-bold flex justify-between">
             <span>Total:</span>
-            <span className="text-red-500">${total.toFixed(2)}</span>
+            <span className="text-red-500">Bs {total.toFixed(2)}</span>
           </div>
 
           <div className="space-y-3">

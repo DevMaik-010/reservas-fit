@@ -41,7 +41,7 @@ export function EstadisticasResumen({ pedidos }: Props) {
     },
     {
       label: "Ingreso Total",
-      valor: `$${ingresoTotal.toFixed(2)}`,
+      valor: `Bs ${ingresoTotal.toFixed(2)}`,
       color: "bg-purple-50 border-l-purple-500",
       icon: "💰",
     },

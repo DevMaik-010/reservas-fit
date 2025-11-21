@@ -15,6 +15,7 @@ export default function ReservaPage() {
   const [items, setItems] = useState<ItemPedido[]>([]);
   const [bebidasDetalle, setBebidasDetalle] = useState<DetalleBebida[]>([]);
   const [showModal, setShowModal] = useState(false);
+  const [total, setTotal] = useState(0);
 
   const handleAddItem = (
     hamburguesa: Hamburguesa,
@@ -31,6 +32,7 @@ export default function ReservaPage() {
     setItems([...items, newItem]);
 
     toast.success("Hamburguesa agregada al carrito");
+    setTotal((prev) => prev + newItem.precio)
   };
 
   const handleAddBebida = (bebida: Bebida, cantidad: number) => {
@@ -41,21 +43,27 @@ export default function ReservaPage() {
     };
     setBebidasDetalle([...bebidasDetalle, newBebida]);
     toast.success("Bebida agregada al carrito");
+    setTotal((prev) => prev + newBebida.precio)
   };
 
   const handleRemoveItem = (id: string) => {
+    
     setItems(items.filter((item) => item.id !== id));
+    const pedidoItem = items.find((item) => item.id === id);
+    if (!pedidoItem) return
+    setTotal(prev => prev - pedidoItem?.precio)
   };
 
   const handleRemoveBebida = (bebidaId: number) => {
     setBebidasDetalle(
       bebidasDetalle.filter((b) => !(b.bebida.id === bebidaId))
     );
+    const bebidaItem = bebidas.find((item) => item.id === bebidaId);
+    if (!bebidaItem) return
+    setTotal(prev => prev - bebidaItem.precio)
   };
 
-  const total =
-    items.reduce((sum, item) => sum + item.precio, 0) +
-    bebidas.reduce((sum, bebida) => sum + bebida.precio, 0);
+  
 
   return (
     <main className="min-h-screen bg-linear-to-b from-gray-50 to-gray-100">
@@ -128,7 +136,10 @@ export default function ReservaPage() {
             total={total}
             onRemoveItem={handleRemoveItem}
             onRemoveBebida={handleRemoveBebida}
-            onConfirm={() => setShowModal(true)}
+            onConfirm={() => {
+              setShowModal(true)
+              
+            }}
           />
         </aside>
       </div>
@@ -143,6 +154,7 @@ export default function ReservaPage() {
             setShowModal(false);
             setItems([]);
             setBebidasDetalle([]);
+            setTotal(0)
           }}
         />
       )}
